@@ -1,21 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.practica5;
+
+import java.awt.image.BufferedImage;
 
 /**
  *
- * @author Ayoze
+ * @author Ayoze, Nicolás
  */
 public class Main extends javax.swing.JFrame {
-
+    
+    Lienzo l = new Lienzo();
+    BufferedImage bi = l.getImagen();
+    boolean c_red, c_green, c_blue;
+    
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
+        UtilsPractica5.seleccionarComponentes(bi, c_red, c_green, c_blue);
     }
 
     /**
@@ -27,6 +29,8 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupCorners = new javax.swing.ButtonGroup();
+        lienzo1 = new com.mycompany.practica5.Lienzo();
         jPanelChooseColors = new javax.swing.JPanel();
         jLabelColors = new javax.swing.JLabel();
         jLabelColors1 = new javax.swing.JLabel();
@@ -38,11 +42,25 @@ public class Main extends javax.swing.JFrame {
         jLabelLogo = new javax.swing.JLabel();
         jLabelLogo1 = new javax.swing.JLabel();
         jRadioButtonUPLEFT = new javax.swing.JRadioButton();
-        jRadioButtonUPLEFT1 = new javax.swing.JRadioButton();
-        jRadioButtonUPLEFT2 = new javax.swing.JRadioButton();
-        jRadioButtonUPLEFT3 = new javax.swing.JRadioButton();
+        jRadioButtonDOWNLEFT = new javax.swing.JRadioButton();
+        jRadioButtonDOWNRIGHT = new javax.swing.JRadioButton();
+        jRadioButtonUPRIGHT = new javax.swing.JRadioButton();
+        jButtonExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lienzo1.setPreferredSize(new java.awt.Dimension(800, 600));
+
+        javax.swing.GroupLayout lienzo1Layout = new javax.swing.GroupLayout(lienzo1);
+        lienzo1.setLayout(lienzo1Layout);
+        lienzo1Layout.setHorizontalGroup(
+            lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+        );
+        lienzo1Layout.setVerticalGroup(
+            lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+        );
 
         jPanelChooseColors.setPreferredSize(new java.awt.Dimension(400, 80));
         jPanelChooseColors.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -118,41 +136,62 @@ public class Main extends javax.swing.JFrame {
         jLabelLogo1.setText("SELECCIONA LA ESQUINA EN LA QUE QUIERE MOSTRAR EL LOGO");
         jPanelChooseLogoCorner.add(jLabelLogo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
 
+        buttonGroupCorners.add(jRadioButtonUPLEFT);
         jRadioButtonUPLEFT.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jRadioButtonUPLEFT.setText("DOWN - LEFT");
+        jRadioButtonUPLEFT.setSelected(true);
+        jRadioButtonUPLEFT.setText("UP - LEFT");
+        jRadioButtonUPLEFT.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 1, 1, new java.awt.Color(0, 0, 0)));
+        jRadioButtonUPLEFT.setBorderPainted(true);
         jRadioButtonUPLEFT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonUPLEFTActionPerformed(evt);
             }
         });
-        jPanelChooseLogoCorner.add(jRadioButtonUPLEFT, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, -1));
+        jPanelChooseLogoCorner.add(jRadioButtonUPLEFT, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
-        jRadioButtonUPLEFT1.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jRadioButtonUPLEFT1.setText("UP - RIGHT");
-        jRadioButtonUPLEFT1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroupCorners.add(jRadioButtonDOWNLEFT);
+        jRadioButtonDOWNLEFT.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        jRadioButtonDOWNLEFT.setText("DOWN - LEFT");
+        jRadioButtonDOWNLEFT.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 2, 1, new java.awt.Color(0, 0, 0)));
+        jRadioButtonDOWNLEFT.setBorderPainted(true);
+        jRadioButtonDOWNLEFT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonUPLEFT1ActionPerformed(evt);
+                jRadioButtonDOWNLEFTActionPerformed(evt);
             }
         });
-        jPanelChooseLogoCorner.add(jRadioButtonUPLEFT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, -1, -1));
+        jPanelChooseLogoCorner.add(jRadioButtonDOWNLEFT, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, -1));
 
-        jRadioButtonUPLEFT2.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jRadioButtonUPLEFT2.setText("UP - LEFT");
-        jRadioButtonUPLEFT2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroupCorners.add(jRadioButtonDOWNRIGHT);
+        jRadioButtonDOWNRIGHT.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        jRadioButtonDOWNRIGHT.setText("DOWN - RIGHT");
+        jRadioButtonDOWNRIGHT.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 2, new java.awt.Color(0, 0, 0)));
+        jRadioButtonDOWNRIGHT.setBorderPainted(true);
+        jRadioButtonDOWNRIGHT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonUPLEFT2ActionPerformed(evt);
+                jRadioButtonDOWNRIGHTActionPerformed(evt);
             }
         });
-        jPanelChooseLogoCorner.add(jRadioButtonUPLEFT2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+        jPanelChooseLogoCorner.add(jRadioButtonDOWNRIGHT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, -1));
 
-        jRadioButtonUPLEFT3.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
-        jRadioButtonUPLEFT3.setText("DOWN - RIGHT");
-        jRadioButtonUPLEFT3.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroupCorners.add(jRadioButtonUPRIGHT);
+        jRadioButtonUPRIGHT.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        jRadioButtonUPRIGHT.setText("UP - RIGHT");
+        jRadioButtonUPRIGHT.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 1, 2, new java.awt.Color(0, 0, 0)));
+        jRadioButtonUPRIGHT.setBorderPainted(true);
+        jRadioButtonUPRIGHT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonUPLEFT3ActionPerformed(evt);
+                jRadioButtonUPRIGHTActionPerformed(evt);
             }
         });
-        jPanelChooseLogoCorner.add(jRadioButtonUPLEFT3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, -1));
+        jPanelChooseLogoCorner.add(jRadioButtonUPRIGHT, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, -1, -1));
+
+        jButtonExit.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        jButtonExit.setText("EXIT");
+        jButtonExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,18 +200,28 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelChooseColors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 546, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addComponent(jButtonExit)
+                .addGap(104, 104, 104)
                 .addComponent(jPanelChooseLogoCorner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lienzo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(134, 134, 134))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanelChooseLogoCorner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelChooseColors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(677, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanelChooseLogoCorner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelChooseColors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonExit))
+                .addGap(18, 18, 18)
+                .addComponent(lienzo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -187,6 +236,11 @@ public class Main extends javax.swing.JFrame {
             jCheckBoxBLUE.setSelected(true);
             jCheckBoxGREEN.setSelected(true);
             jCheckBoxRED.setSelected(true);
+            c_red = true;
+            c_green = true;
+            c_blue = true;
+            l.setImagen(bi);
+            UtilsPractica5.seleccionarComponentes(bi, c_red, c_green, c_blue);
         } else {
             if (jCheckBoxRED.isSelected() == true && jCheckBoxGREEN.isSelected() == true && jCheckBoxBLUE.isSelected() == true) {
                 jCheckBoxALL.setSelected(true);
@@ -197,7 +251,15 @@ public class Main extends javax.swing.JFrame {
     private void jCheckBoxREDStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBoxREDStateChanged
         if (jCheckBoxRED.isSelected() == false) {
             jCheckBoxALL.setSelected(false);
+            c_red = false;
+            l.setImagen(bi);
+            UtilsPractica5.seleccionarComponentes(bi, c_red, c_green, c_blue);
+            l.repaint();
         } else {
+            c_red = true;
+            l.setImagen(bi);
+            UtilsPractica5.seleccionarComponentes(bi, c_red, c_green, c_blue);
+            l.repaint();
             if (jCheckBoxGREEN.isSelected() == true && jCheckBoxBLUE.isSelected() == true) {
                 jCheckBoxALL.setSelected(true);
             }
@@ -207,7 +269,11 @@ public class Main extends javax.swing.JFrame {
     private void jCheckBoxGREENStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBoxGREENStateChanged
         if (jCheckBoxGREEN.isSelected() == false) {
             jCheckBoxALL.setSelected(false);
+            c_green = false;
+            l.setImagen(bi);
         } else {
+            c_green = true;
+            l.setImagen(bi);
             if (jCheckBoxRED.isSelected() == true && jCheckBoxBLUE.isSelected() == true) {
                 jCheckBoxALL.setSelected(true);
             }
@@ -217,28 +283,36 @@ public class Main extends javax.swing.JFrame {
     private void jCheckBoxBLUEStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBoxBLUEStateChanged
         if (jCheckBoxBLUE.isSelected() == false) {
             jCheckBoxALL.setSelected(false);
+            c_blue = false;
+            l.setImagen(bi);
         } else {
+            c_blue = true;
+            l.setImagen(bi);
             if (jCheckBoxRED.isSelected() == true && jCheckBoxGREEN.isSelected() == true) {
                 jCheckBoxALL.setSelected(true);
             }
         }
     }//GEN-LAST:event_jCheckBoxBLUEStateChanged
 
+    private void jRadioButtonDOWNLEFTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonDOWNLEFTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonDOWNLEFTActionPerformed
+
+    private void jRadioButtonUPRIGHTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonUPRIGHTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonUPRIGHTActionPerformed
+
     private void jRadioButtonUPLEFTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonUPLEFTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonUPLEFTActionPerformed
 
-    private void jRadioButtonUPLEFT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonUPLEFT1ActionPerformed
+    private void jRadioButtonDOWNRIGHTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonDOWNRIGHTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonUPLEFT1ActionPerformed
+    }//GEN-LAST:event_jRadioButtonDOWNRIGHTActionPerformed
 
-    private void jRadioButtonUPLEFT2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonUPLEFT2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonUPLEFT2ActionPerformed
-
-    private void jRadioButtonUPLEFT3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonUPLEFT3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonUPLEFT3ActionPerformed
+    private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButtonExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,6 +350,8 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroupCorners;
+    private javax.swing.JButton jButtonExit;
     private javax.swing.JCheckBox jCheckBoxALL;
     private javax.swing.JCheckBox jCheckBoxBLUE;
     private javax.swing.JCheckBox jCheckBoxGREEN;
@@ -286,9 +362,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelLogo1;
     private javax.swing.JPanel jPanelChooseColors;
     private javax.swing.JPanel jPanelChooseLogoCorner;
+    private javax.swing.JRadioButton jRadioButtonDOWNLEFT;
+    private javax.swing.JRadioButton jRadioButtonDOWNRIGHT;
     private javax.swing.JRadioButton jRadioButtonUPLEFT;
-    private javax.swing.JRadioButton jRadioButtonUPLEFT1;
-    private javax.swing.JRadioButton jRadioButtonUPLEFT2;
-    private javax.swing.JRadioButton jRadioButtonUPLEFT3;
+    private javax.swing.JRadioButton jRadioButtonUPRIGHT;
+    private com.mycompany.practica5.Lienzo lienzo1;
     // End of variables declaration//GEN-END:variables
 }
