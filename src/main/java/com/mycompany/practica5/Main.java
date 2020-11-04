@@ -1,6 +1,6 @@
 package com.mycompany.practica5;
 
-import java.awt.image.BufferedImage;
+import java.awt.Graphics;
 
 /**
  *
@@ -9,15 +9,15 @@ import java.awt.image.BufferedImage;
 public class Main extends javax.swing.JFrame {
     
     Lienzo l = new Lienzo();
-    BufferedImage bi = l.getImagen();
-    boolean c_red, c_green, c_blue;
+    Graphics g = l.getGraphics();        
+    boolean c_red = true, c_green = true, c_blue = true;
     
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
-        UtilsPractica5.seleccionarComponentes(bi, c_red, c_green, c_blue);
+        //UtilsPractica5.seleccionarComponentes(bi, c_red, c_green, c_blue);
     }
 
     /**
@@ -239,8 +239,7 @@ public class Main extends javax.swing.JFrame {
             c_red = true;
             c_green = true;
             c_blue = true;
-            l.setImagen(bi);
-            UtilsPractica5.seleccionarComponentes(bi, c_red, c_green, c_blue);
+            l.changeColor(c_red, c_green, c_blue);
         } else {
             if (jCheckBoxRED.isSelected() == true && jCheckBoxGREEN.isSelected() == true && jCheckBoxBLUE.isSelected() == true) {
                 jCheckBoxALL.setSelected(true);
@@ -251,63 +250,70 @@ public class Main extends javax.swing.JFrame {
     private void jCheckBoxREDStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBoxREDStateChanged
         if (jCheckBoxRED.isSelected() == false) {
             jCheckBoxALL.setSelected(false);
+            
             c_red = false;
-            l.setImagen(bi);
-            UtilsPractica5.seleccionarComponentes(bi, c_red, c_green, c_blue);
-            l.repaint();
         } else {
             c_red = true;
-            l.setImagen(bi);
-            UtilsPractica5.seleccionarComponentes(bi, c_red, c_green, c_blue);
-            l.repaint();
+            
             if (jCheckBoxGREEN.isSelected() == true && jCheckBoxBLUE.isSelected() == true) {
                 jCheckBoxALL.setSelected(true);
             }
         }
+        l.changeColor(c_red, c_green, c_blue);
     }//GEN-LAST:event_jCheckBoxREDStateChanged
 
     private void jCheckBoxGREENStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBoxGREENStateChanged
         if (jCheckBoxGREEN.isSelected() == false) {
             jCheckBoxALL.setSelected(false);
+            
             c_green = false;
-            l.setImagen(bi);
         } else {
             c_green = true;
-            l.setImagen(bi);
+            
             if (jCheckBoxRED.isSelected() == true && jCheckBoxBLUE.isSelected() == true) {
                 jCheckBoxALL.setSelected(true);
             }
         }
+        l.changeColor(c_red, c_green, c_blue);
     }//GEN-LAST:event_jCheckBoxGREENStateChanged
 
     private void jCheckBoxBLUEStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBoxBLUEStateChanged
         if (jCheckBoxBLUE.isSelected() == false) {
             jCheckBoxALL.setSelected(false);
+            
             c_blue = false;
-            l.setImagen(bi);
         } else {
             c_blue = true;
-            l.setImagen(bi);
+            
             if (jCheckBoxRED.isSelected() == true && jCheckBoxGREEN.isSelected() == true) {
                 jCheckBoxALL.setSelected(true);
             }
         }
+        l.changeColor(c_red, c_green, c_blue);
     }//GEN-LAST:event_jCheckBoxBLUEStateChanged
 
     private void jRadioButtonDOWNLEFTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonDOWNLEFTActionPerformed
-        // TODO add your handling code here:
+        if (jRadioButtonDOWNLEFT.isSelected() == true) {
+            l.drawLogo(0, 750);
+        }
     }//GEN-LAST:event_jRadioButtonDOWNLEFTActionPerformed
 
     private void jRadioButtonUPRIGHTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonUPRIGHTActionPerformed
-        // TODO add your handling code here:
+        if (jRadioButtonUPRIGHT.isSelected() == true) {
+            l.drawLogo(550, 0);
+        }
     }//GEN-LAST:event_jRadioButtonUPRIGHTActionPerformed
 
     private void jRadioButtonUPLEFTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonUPLEFTActionPerformed
-        // TODO add your handling code here:
+        if (jRadioButtonUPLEFT.isSelected() == true) {
+            l.drawLogo(0, 0);
+        }
     }//GEN-LAST:event_jRadioButtonUPLEFTActionPerformed
 
     private void jRadioButtonDOWNRIGHTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonDOWNRIGHTActionPerformed
-        // TODO add your handling code here:
+        if (jRadioButtonDOWNRIGHT.isSelected() == true) {
+            l.drawLogo(550, 750);
+        }
     }//GEN-LAST:event_jRadioButtonDOWNRIGHTActionPerformed
 
     private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
