@@ -7,9 +7,6 @@ import java.awt.Graphics;
  * @author Ayoze, Nicolás
  */
 public class Main extends javax.swing.JFrame {
-    
-    Lienzo l = new Lienzo();
-    Graphics g = l.getGraphics();        
     boolean c_red = true, c_green = true, c_blue = true;
     
     /**
@@ -17,7 +14,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        //UtilsPractica5.seleccionarComponentes(bi, c_red, c_green, c_blue);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -48,6 +45,7 @@ public class Main extends javax.swing.JFrame {
         jButtonExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         lienzo1.setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -62,6 +60,7 @@ public class Main extends javax.swing.JFrame {
             .addGap(0, 600, Short.MAX_VALUE)
         );
 
+        jPanelChooseColors.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
         jPanelChooseColors.setPreferredSize(new java.awt.Dimension(400, 80));
         jPanelChooseColors.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -80,11 +79,6 @@ public class Main extends javax.swing.JFrame {
         jCheckBoxALL.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jCheckBoxALLStateChanged(evt);
-            }
-        });
-        jCheckBoxALL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxALLActionPerformed(evt);
             }
         });
         jPanelChooseColors.add(jCheckBoxALL, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
@@ -125,6 +119,7 @@ public class Main extends javax.swing.JFrame {
         });
         jPanelChooseColors.add(jCheckBoxBLUE, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, -1, -1));
 
+        jPanelChooseLogoCorner.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         jPanelChooseLogoCorner.setPreferredSize(new java.awt.Dimension(400, 80));
         jPanelChooseLogoCorner.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -185,6 +180,7 @@ public class Main extends javax.swing.JFrame {
         });
         jPanelChooseLogoCorner.add(jRadioButtonUPRIGHT, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, -1, -1));
 
+        jButtonExit.setBackground(new java.awt.Color(255, 51, 51));
         jButtonExit.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonExit.setText("EXIT");
         jButtonExit.addActionListener(new java.awt.event.ActionListener() {
@@ -200,13 +196,13 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelChooseColors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                .addComponent(jButtonExit)
-                .addGap(104, 104, 104)
+                .addGap(100, 100, 100)
+                .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanelChooseLogoCorner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(148, Short.MAX_VALUE)
                 .addComponent(lienzo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(134, 134, 134))
         );
@@ -214,22 +210,17 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jPanelChooseLogoCorner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanelChooseColors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButtonExit))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanelChooseLogoCorner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelChooseColors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonExit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lienzo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jCheckBoxALLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxALLActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxALLActionPerformed
 
     private void jCheckBoxALLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBoxALLStateChanged
         if (jCheckBoxALL.isSelected() == true) {
@@ -239,7 +230,7 @@ public class Main extends javax.swing.JFrame {
             c_red = true;
             c_green = true;
             c_blue = true;
-            l.changeColor(c_red, c_green, c_blue);
+            lienzo1.changeColor(c_red, c_green, c_blue);
         } else {
             if (jCheckBoxRED.isSelected() == true && jCheckBoxGREEN.isSelected() == true && jCheckBoxBLUE.isSelected() == true) {
                 jCheckBoxALL.setSelected(true);
@@ -251,6 +242,10 @@ public class Main extends javax.swing.JFrame {
         if (jCheckBoxRED.isSelected() == false) {
             jCheckBoxALL.setSelected(false);
             
+            if (jCheckBoxGREEN.isSelected() == false && jCheckBoxBLUE.isSelected() == false) {
+                jCheckBoxRED.setSelected(true);
+            }
+            
             c_red = false;
         } else {
             c_red = true;
@@ -258,13 +253,19 @@ public class Main extends javax.swing.JFrame {
             if (jCheckBoxGREEN.isSelected() == true && jCheckBoxBLUE.isSelected() == true) {
                 jCheckBoxALL.setSelected(true);
             }
+            
+            
         }
-        l.changeColor(c_red, c_green, c_blue);
+        lienzo1.changeColor(c_red, c_green, c_blue);
     }//GEN-LAST:event_jCheckBoxREDStateChanged
 
     private void jCheckBoxGREENStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBoxGREENStateChanged
         if (jCheckBoxGREEN.isSelected() == false) {
             jCheckBoxALL.setSelected(false);
+            
+            if (jCheckBoxRED.isSelected() == false && jCheckBoxBLUE.isSelected() == false) {
+                jCheckBoxGREEN.setSelected(true);
+            }
             
             c_green = false;
         } else {
@@ -274,12 +275,16 @@ public class Main extends javax.swing.JFrame {
                 jCheckBoxALL.setSelected(true);
             }
         }
-        l.changeColor(c_red, c_green, c_blue);
+        lienzo1.changeColor(c_red, c_green, c_blue);
     }//GEN-LAST:event_jCheckBoxGREENStateChanged
 
     private void jCheckBoxBLUEStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBoxBLUEStateChanged
         if (jCheckBoxBLUE.isSelected() == false) {
             jCheckBoxALL.setSelected(false);
+            
+            if (jCheckBoxRED.isSelected() == false && jCheckBoxGREEN.isSelected() == false) {
+                jCheckBoxBLUE.setSelected(true);
+            }
             
             c_blue = false;
         } else {
@@ -289,30 +294,30 @@ public class Main extends javax.swing.JFrame {
                 jCheckBoxALL.setSelected(true);
             }
         }
-        l.changeColor(c_red, c_green, c_blue);
+        lienzo1.changeColor(c_red, c_green, c_blue);
     }//GEN-LAST:event_jCheckBoxBLUEStateChanged
 
     private void jRadioButtonDOWNLEFTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonDOWNLEFTActionPerformed
         if (jRadioButtonDOWNLEFT.isSelected() == true) {
-            l.drawLogo(0, 750);
+            lienzo1.drawLogo(0, 550);
         }
     }//GEN-LAST:event_jRadioButtonDOWNLEFTActionPerformed
 
     private void jRadioButtonUPRIGHTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonUPRIGHTActionPerformed
         if (jRadioButtonUPRIGHT.isSelected() == true) {
-            l.drawLogo(550, 0);
+            lienzo1.drawLogo(750, 0);
         }
     }//GEN-LAST:event_jRadioButtonUPRIGHTActionPerformed
 
     private void jRadioButtonUPLEFTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonUPLEFTActionPerformed
         if (jRadioButtonUPLEFT.isSelected() == true) {
-            l.drawLogo(0, 0);
+            lienzo1.drawLogo(0, 0);
         }
     }//GEN-LAST:event_jRadioButtonUPLEFTActionPerformed
 
     private void jRadioButtonDOWNRIGHTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonDOWNRIGHTActionPerformed
         if (jRadioButtonDOWNRIGHT.isSelected() == true) {
-            l.drawLogo(550, 750);
+            lienzo1.drawLogo(750, 550);
         }
     }//GEN-LAST:event_jRadioButtonDOWNRIGHTActionPerformed
 

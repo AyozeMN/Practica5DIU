@@ -18,10 +18,12 @@ public class Lienzo extends JPanel {
     private BufferedImage imagen = null;
     private BufferedImage imagenClon = null;
     private BufferedImage logo = null;
+    int posx = 0; int posy = 0;
 
     public Lienzo() {
         try {
             imagen = ImageIO.read(new URL ("https://i.ibb.co/mCgxYWH/rgb.jpg"));
+            imagenClon = ImageIO.read(new URL ("https://i.ibb.co/mCgxYWH/rgb.jpg"));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Lienzo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -40,22 +42,18 @@ public class Lienzo extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(imagen, 0, 0, null);
-        g.drawImage(logo, 0, 0, null);
+        g.drawImage(imagenClon, 0, 0, null);
+        g.drawImage(logo, posx, posy, null);
     }
     
     public void drawLogo(int x, int y) {
-        Graphics g = this.getGraphics();
-        g.drawImage(logo, x, y, null);
+        this.posx = x;
+        this.posy = y;
+        this.repaint();
     }
     
     public void changeColor(boolean c_red, boolean c_green, boolean c_blue) {
         imagenClon = UtilsPractica5.seleccionarComponentes(imagen, c_red, c_green, c_blue);
-        
-        Graphics g = this.getGraphics();
-        
-        //super.paintComponent(g);
-        
-        g.drawImage(imagenClon, 0, 0, null);
+        this.repaint();
     }
 }
